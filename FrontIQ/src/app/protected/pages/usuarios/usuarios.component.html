@@ -1,0 +1,59 @@
+<h1><i class="fas fa-users"></i>Listado de Usuarios</h1>
+<hr>
+
+<div class="row">
+    <div class="col text-right">
+        <button routerLink="/dashboard" class="btn btn-primary">
+            <i class="fas fa-arrow-left"></i>
+            Inicio
+        </button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col text-right">
+        <button routerLink="/dashboard/usuarios/0" class="btn btn-secondary mt-3">
+            <i class="fas fa-user-plus"></i>
+            Crear
+        </button>
+    </div>
+</div>
+
+<table class="table table-hover mt-3 animate__fadeIn animate__faster mt-5">
+    <thead>
+        <tr>
+            <th scope="col">Nombre de Usuario</th>
+            <th scope="col">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let reg of regs; let i = index">
+            <td>{{ reg.nameUser }}</td>
+            <td>
+                <button class="btn btn-info mr-1 mt-1" style='width:32px; height:32px' title="Editar" [routerLink]="['/dashboard/usuarios', reg.id]">
+                    <i class="fa fa-pen center"></i>
+                </button> -->
+                <button class="btn btn-danger mr-1 mt-1" style='width:32px; height:32px' title="Eliminar" (click)="delete(reg.id, i)">
+                    <i class="fa fa-trash"></i>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div *ngIf="!cargando && regs.length === 0" class="alert alert-warning text-center mt-3">
+    <h4 class="alert-heading">No hay resgistros</h4>
+    <p>
+        <i class="fa fa-exclamation fa-2x"></i>
+    </p>
+</div>
+
+<div *ngIf="cargando" class="alert alert-info text-center mt-3">
+    <h4 class="alert-heading">Cargando</h4>
+    <p>
+        <i class="fa fa-sync-alt fa-spin fa-2x"></i>
+    </p>
+    <p class="mb-0">
+        Espere por favor
+    </p>
+</div>
