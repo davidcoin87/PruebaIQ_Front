@@ -3,6 +3,7 @@ import { CommonService } from '../../services/common.service';
 
 import { AuditoriaService } from '../../services/auditoria.service';
 import { AuditoriaModel } from '../../models/auditoria.models';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-auditoria',
@@ -14,6 +15,9 @@ export class AuditoriaComponent implements OnInit {
   regs: AuditoriaModel[] = [];
   title = "Registros de Acceso";
   cargando = false;
+  pageSize = 10;
+  desde: number = 0;
+  hasta: number = 10
 
   constructor( private auditoriaService: AuditoriaService,
                public common: CommonService ) { }
@@ -28,6 +32,12 @@ export class AuditoriaComponent implements OnInit {
       this.regs = resp;
       this.cargando = false;
     })
+  }
+
+  cambiarpagina(e: PageEvent){
+    //console.log(e);
+    this.desde = e.pageIndex * e.pageSize;
+    this.hasta = this.desde + e.pageSize;
   }
 
 }

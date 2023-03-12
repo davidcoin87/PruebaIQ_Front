@@ -18,7 +18,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let reg of regs; let i = index">
+        <tr *ngFor="let reg of regs | slice:desde:hasta ; let i = index">
             <td>{{ reg.nameUser }}</td>
             <td>{{ reg.dateRegister}}</td>
             <td>
@@ -32,6 +32,12 @@
         </tr>
     </tbody>
 </table>
+<mat-paginator #paginator class="demo-paginator"
+               [length]="regs.length"
+               [pageSize]="pageSize"
+               (page)="cambiarpagina($event)"
+               aria-label="Select page">
+</mat-paginator>
 
 <div *ngIf="!cargando && regs.length === 0" class="alert alert-warning text-center mt-3">
     <h4 class="alert-heading">No hay resgistros</h4>

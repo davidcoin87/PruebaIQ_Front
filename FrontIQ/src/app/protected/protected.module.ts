@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { ProtectedRoutingModule } from './protected-routing.module';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ProtectedRoutingModule,
-    FormsModule
+    FormsModule,
+    MatPaginatorModule
   ]
 })
 export class ProtectedModule { }
